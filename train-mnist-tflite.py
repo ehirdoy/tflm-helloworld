@@ -18,6 +18,6 @@ model.fit(train_images, train_labels, epochs=5)
 model.evaluate(test_images, test_labels)
 
 converter = tf.lite.TFLiteConverter.from_keras_model(model)
-converter.optimizations = [] # tf.lite.Optimize.{DEFAULT,OPTIMIZE_FOR_SIZE,OPTIMIZE_FOR_LATENCY}
+converter.optimizations = [tf.lite.Optimize.DEFAULT]  # tf.lite.Optimize.{DEFAULT,OPTIMIZE_FOR_SIZE,OPTIMIZE_FOR_LATENCY}
 tflite_model = converter.convert()
 open("mnist_model.tflite", "wb").write(tflite_model)
